@@ -1,0 +1,76 @@
+{
+    "name": "Bookeo",
+    "description": "Bookeo provides a leading online booking and scheduling system for tours, classes, and appointments, to help you save money and time. Click to learn more!",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28769-www-bookeo-com.jpg",
+    "tags": [
+        "bookings",
+        "have api",
+        "relative data",
+        "schedules",
+        "service api",
+        "webhook implementations"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/bookeo\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Bookeo",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28769-www-bookeo-com.jpg",
+            "humanURL": "https:\/\/www.bookeo.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/bookeo-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/bookeo.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/bookeo"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/www.bookeo.com\/api\/"
+        },
+        {
+            "type": "Documentation",
+            "url": "https:\/\/www.bookeo.com\/apiref\/index.html"
+        },
+        {
+            "type": "Partners",
+            "url": "https:\/\/www.bookeo.com\/affiliate\/"
+        },
+        {
+            "type": "Privacy Policy",
+            "url": "https:\/\/www.bookeo.com\/privacy\/"
+        },
+        {
+            "type": "Terms of Service",
+            "url": "https:\/\/www.bookeo.com\/termsofservice\/"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/bookeo"
+        },
+        {
+            "type": "Webhooks",
+            "url": "https:\/\/www.bookeo.com\/api\/webhooks\/"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/www.bookeo.com"
+        }
+    ]
+}
