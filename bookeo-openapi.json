@@ -1,0 +1,2443 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "",
+        "title": "Bookeo",
+        "description": "",
+        "termsOfService": ""
+    },
+    "servers": [
+        "httpsapi.bookeo.com\/v2"
+    ],
+    "paths": {
+        "\/availability\/matchingslots": {
+            "post": {
+                "summary": "Find available slots matching given search parameters",
+                "description": "Create a search for available slots that match the given search parameters.\n Note that there are two different searches possible, \/availability\/slots and \/availability\/matchingslots (this endpoint).\n The former simply shows the number of available seats for each available slot. The latter (this one) takes as input the participant numbers, and shows the slots that are available for those numbers, and an estimate of the price.\n Parameters include product code, number of people and options.\n The su",
+                "operationId": "PostAvailabilityMatchingslots",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "body",
+                        "description": ""
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": ".\nmaximum: 300"
+                    }
+                ]
+            }
+        },
+        "\/availability\/matchingslots\/{pageNavigationToken}": {
+            "get": {
+                "summary": "Navigate results of a matching slots search",
+                "description": "Navigate results of a matching slots search.",
+                "operationId": "GetAvailabilityMatchingslotsPagenavigationtoken",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "pageNavigationToken",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/availability\/slots": {
+            "get": {
+                "summary": "Get information about the availability of products",
+                "description": "Performs a basic search to find available slots and number of seats in each.\n Note that there are two different searches possible, \/availability\/slots (this endpoint) and \/availability\/matchingslots .\n The former simply shows the number of available seats for each available slot. The latter takes as input the participant numbers, and shows the slots that are available for those numbers, and an estimate of the price.\n \/availability\/slots cannot be used for products of type flexibleTime . For thos",
+                "operationId": "GetAvailabilitySlots",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "the product id (see \/settings\/products). If not provided, all products of type \"fixed\" or \"fixedCourse\" will be included in the result. If no productId is provided, products that are not bookable by customers wil not be included in the result. If productId is provided, the product must be of type \"fixed\" or \"fixedCourse\". For products of type \"flexibleTime\", use \/availability\/matchingslots instead."
+                    },
+                    {
+                        "name": "startTime",
+                        "in": "query",
+                        "description": "the start time to search from. Required unless pageNavigationToken is used."
+                    },
+                    {
+                        "name": "endTime",
+                        "in": "query",
+                        "description": "the end time to search to. Required unless pageNavigationToken is used. The maximum date range in a single call is 31 days."
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": ".\nmaximum: 300"
+                    },
+                    {
+                        "name": "pageNavigationToken",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/bookings": {
+            "get": {
+                "summary": "Retrieve bookings",
+                "description": "Retrieve existing bookings\n The result is limited by the permissions of the apiKey.\n <p\/>\n It is possible to filter by time booked and\/or time of the last change.\n To filter by time booked, the parameters startTime and endTime are required.\n To filter by last time changed, the parameters lastUpdatedStartTime and lastUpdatedEndTime are required.\n It is possible to filter by both at the same time. At least one of the two filters must be used.\n <p\/>\n It is further possible to filter by product id.\n",
+                "operationId": "GetBookings",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "startTime",
+                        "in": "query",
+                        "description": "the start time to search from. Required unless pageNavigationToken is used."
+                    },
+                    {
+                        "name": "endTime",
+                        "in": "query",
+                        "description": "the end time to search to. Required unless pageNavigationToken is used. The maximum date range in a single call is 31 days."
+                    },
+                    {
+                        "name": "lastUpdatedStartTime",
+                        "in": "query",
+                        "description": "if specified, only include bookings that were last changed (or created) on or after this time. If specified, lastUpdatedEndTime must be specified as well."
+                    },
+                    {
+                        "name": "lastUpdatedEndTime",
+                        "in": "query",
+                        "description": "if specified, only include bookings that were last changed (or created) on or before this time. If specified, lastUpdatedStartTime  must be specified as well.  The maximum allowed interval is 31 days."
+                    },
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "the product id (see \/settings\/products). If not provided, all products of type \"fixed\" or \"fixedCourse\" will be included in the result. If no productId is provided, products that are not bookable by customers wil not be included in the result. If productId is provided, the product must be of type \"fixed\" or \"fixedCourse\". For products of type \"flexibleTime\", use \/availability\/matchingslots instead."
+                    },
+                    {
+                        "name": "includeCanceled",
+                        "in": "query",
+                        "description": "if true, canceled bookings are included. If false, only bookings that are not canceled are included"
+                    },
+                    {
+                        "name": "expandCustomer",
+                        "in": "query",
+                        "description": "if true, the full details of the customer are included (provided the application has read permission over the customer)"
+                    },
+                    {
+                        "name": "expandParticipants",
+                        "in": "query",
+                        "description": "if true, full details of the participants are included (provided the application has read permission over the participant)"
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": ".\nmaximum: 300"
+                    },
+                    {
+                        "name": "pageNavigationToken",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": ""
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create a new booking",
+                "description": "When creating a booking for a product of type \"fixed\" or \"fixedCourse\", the eventId is required. eventIds are obtained by calling \/availability\/slots or \/availability\/matchingSlots .\n When creating a booking for a product of type \"flexibleTime\", you can either specify the eventId or the startTime (in which case you can optionally specify the endTime. If no endTime is specified, Bookeo will automatically calculate the duration based on the options chosen)",
+                "operationId": "PostBookings",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "booking",
+                        "in": "body",
+                        "description": ""
+                    },
+                    {
+                        "name": "previousHoldId",
+                        "in": "query",
+                        "description": "if specified, deletes the hold with the given id"
+                    },
+                    {
+                        "name": "notifyUsers",
+                        "in": "query",
+                        "description": "whether to send a notification email (and possibly SMS, depending on settings) to eligible users"
+                    },
+                    {
+                        "name": "notifyCustomer",
+                        "in": "query",
+                        "description": "whether to send a confirmation email to the customer"
+                    },
+                    {
+                        "name": "sendCustomerReminders",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "sendCustomerThankyou",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "mode",
+                        "in": "query",
+                        "description": "if present and set to \"backend\", treats the operation as if it was done by a manager. This relaxes some constraints such as when is it possible to change a booking, participants limits for the booking, booking limits (time in advance), and so on."
+                    }
+                ]
+            }
+        },
+        "\/bookings\/{bookingNumber}": {
+            "get": {
+                "summary": "Retrieve a booking",
+                "description": "Retrieve a booking by its booking number",
+                "operationId": "GetBookingsBookingnumber",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "bookingNumber",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "expandCustomer",
+                        "in": "query",
+                        "description": "if true, the full details of the customer are included (provided the application has read permission over the customer)"
+                    },
+                    {
+                        "name": "expandParticipants",
+                        "in": "query",
+                        "description": "if true, full details of the participants are included (provided the application has read permission over the participant)"
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update an existing booking",
+                "description": "Update an existing booking.",
+                "operationId": "PutBookingsBookingnumber",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "booking",
+                        "in": "body",
+                        "description": ""
+                    },
+                    {
+                        "name": "bookingNumber",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "notifyUsers",
+                        "in": "query",
+                        "description": "whether to send a notification email (and possibly SMS, depending on settings) to eligible users"
+                    },
+                    {
+                        "name": "notifyCustomer",
+                        "in": "query",
+                        "description": "whether to send a confirmation email to the customer"
+                    },
+                    {
+                        "name": "mode",
+                        "in": "query",
+                        "description": "if present and set to \"backend\", treats the operation as if it was done by a manager. This relaxes some constraints such as when is it possible to change a booking, participants limits for the booking, booking limits (time in advance), and so on."
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Cancel a booking",
+                "description": "Cancel a booking. Cancelled bookings remain in the system, but no longer show up in the calendar or take up seats.",
+                "operationId": "DeleteBookingsBookingnumber",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "bookingNumber",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "notifyUsers",
+                        "in": "query",
+                        "description": "whether to send a notification email (and possibly SMS, depending on settings) to eligible users"
+                    },
+                    {
+                        "name": "notifyCustomer",
+                        "in": "query",
+                        "description": "whether to send a confirmation email to the customer"
+                    },
+                    {
+                        "name": "applyCancellationPolicy",
+                        "in": "query",
+                        "description": "if true, the default cancellation policy is applied. This may cause a charge on the credit card on file, if a cancellation fee is due"
+                    },
+                    {
+                        "name": "trackInCustomerHistory",
+                        "in": "query",
+                        "description": "if true, the cancellation will be tracked in the customer's stats"
+                    },
+                    {
+                        "name": "cancelRemainingSeries",
+                        "in": "query",
+                        "description": "if true, and this booking is part of a recurring series, all following bookings will be cancelled as well"
+                    },
+                    {
+                        "name": "reason",
+                        "in": "query",
+                        "description": "an optional reason that explains why the booking was cancelled"
+                    }
+                ]
+            }
+        },
+        "\/bookings\/{bookingNumber}\/customer": {
+            "get": {
+                "summary": "Retrieve the customer associated with a booking",
+                "description": "Retrieve the customer associated with a booking.",
+                "operationId": "GetBookingsBookingnumberCustomer",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "bookingNumber",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/bookings\/{bookingNumber}\/payments": {
+            "get": {
+                "summary": "Get the payments received for a booking",
+                "description": "Get a list of all payments received for a booking. Only payments for which the apiKey has at least read permission will be included",
+                "operationId": "GetBookingsBookingnumberPayments",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "bookingNumber",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": ".\nmaximum: 300"
+                    },
+                    {
+                        "name": "pageNavigationToken",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": ""
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Add a payment to a booking",
+                "description": "Create a payment record associated with a booking",
+                "operationId": "PostBookingsBookingnumberPayments",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "apiPayment",
+                        "in": "body",
+                        "description": ""
+                    },
+                    {
+                        "name": "bookingNumber",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/customers": {
+            "get": {
+                "summary": "Retrieve customers",
+                "description": "Get a list of customers.",
+                "operationId": "GetCustomers",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "currentMembers",
+                        "in": "query",
+                        "description": "if true, include customers that are current members. this is the default"
+                    },
+                    {
+                        "name": "currentNonMembers",
+                        "in": "query",
+                        "description": "if true, include customers that are not current members. this is the default"
+                    },
+                    {
+                        "name": "createdSince",
+                        "in": "query",
+                        "description": "if present, only include customers created since the given time"
+                    },
+                    {
+                        "name": "searchField",
+                        "in": "query",
+                        "description": "a field on which to apply the search filter. Used only if searchText is specified"
+                    },
+                    {
+                        "name": "searchText",
+                        "in": "query",
+                        "description": "the text to search for. If not present, all customers are returned"
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": ".\nmaximum: 300"
+                    },
+                    {
+                        "name": "pageNavigationToken",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": ""
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create a new customer.",
+                "description": "Create a new customer.\n Please note there is a limit to the number of customers that can be imported in Bookeo. Bookeo is primarily a booking system, not a CRM.",
+                "operationId": "PostCustomers",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/customers\/{customerid}\/linkedpeople\/{id}": {
+            "get": {
+                "summary": "Retrieve a person linked to a customer",
+                "description": "Retrieve a person linked to a customer.",
+                "operationId": "GetCustomersCustomerLinkedpeople",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "customerid",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update the details of a person linked to a customer",
+                "description": "Update the details of a person linked to a customer.",
+                "operationId": "PutCustomersCustomerLinkedpeople",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "apiLinkedPerson",
+                        "in": "body",
+                        "description": ""
+                    },
+                    {
+                        "name": "customerid",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a person linked to a customer",
+                "description": "Delete a person linked to a customer.",
+                "operationId": "DeleteCustomersCustomerLinkedpeople",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "customerid",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/customers\/{id}": {
+            "get": {
+                "summary": "Retrieve a customer",
+                "description": "Retrieve a customer by its id",
+                "operationId": "GetCustomers",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update an existing customer",
+                "description": "Update an existing customer.",
+                "operationId": "PutCustomers",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "description": ""
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a customer",
+                "description": "Delete a customer.\n Please note it is not possible to delete customers that have bookings in the future, and that are not cancelled.\n If your application needs to delete a customer with future bookings, make sure to cancel all future bookings for that customer first.",
+                "operationId": "DeleteCustomers",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/customers\/{id}\/authenticate": {
+            "get": {
+                "summary": "Check a customer's password",
+                "description": "The customer's email address is the \"username\" used by Bookeo to authenticate customers.\n So to authenticate a customer your application would typically use GET \/customers to search for customers with a given email address, and then GET \/customers\/{id}\/authenticate to authenticate.\n Remember that there may be duplicate customer records with the same email address, ex. due to duplicate importing or manual record creation.",
+                "operationId": "GetCustomersAuthenticate",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "remember to use URL encoding"
+                    }
+                ]
+            }
+        },
+        "\/customers\/{id}\/bookings": {
+            "get": {
+                "summary": "Retrieve a customer's bookings",
+                "description": "Retrieve a customer's bookings.",
+                "operationId": "GetCustomersBookings",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "beginDate",
+                        "in": "query",
+                        "description": "if specified, only bookings on or after this date will be included"
+                    },
+                    {
+                        "name": "endDate",
+                        "in": "query",
+                        "description": "if specified, only bookings on or before this date will be included"
+                    },
+                    {
+                        "name": "expandParticipants",
+                        "in": "query",
+                        "description": "if true, full details of the participants are included (provided the application has read permission over the participant)"
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": ".\nmaximum: 300"
+                    },
+                    {
+                        "name": "pageNavigationToken",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/customers\/{id}\/linkedpeople": {
+            "get": {
+                "summary": "Get the people linked to a customer",
+                "description": "Get the people linked to a customer.",
+                "operationId": "GetCustomersLinkedpeople",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": ".\nmaximum: 300"
+                    },
+                    {
+                        "name": "pageNavigationToken",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/holds": {
+            "post": {
+                "summary": "Create a temporary hold to finalize the booking",
+                "description": "Performs a final check of the booking, and reserves required resources\/seats to allow finalization of the booking process (ex. process payment).\n The returned object also contains the updated price calculations.\n Normally your application should have no more than one hold in place during a customer booking process.\n Make sure to not leave many holds around. In any case, holds are deleted automatically after a fixed time from creation.\n Note that when creating a hold, the customer field of the bo",
+                "operationId": "PostHolds",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "booking",
+                        "in": "body",
+                        "description": ""
+                    },
+                    {
+                        "name": "holdDurationSeconds",
+                        "in": "query",
+                        "description": "the required seats\/resources will be reserved for the specified time, ensuring that they cannot be taken by other bookings during this time. The hold cannot be for more than 10 minutes."
+                    },
+                    {
+                        "name": "previousHoldId",
+                        "in": "query",
+                        "description": "if specified, deletes the hold with the given id"
+                    }
+                ]
+            }
+        },
+        "\/holds\/{id}": {
+            "get": {
+                "summary": "Retrieve a hold previously generated",
+                "description": "Retrieve a hold previously generated.",
+                "operationId": "GetHolds",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a temporary hold",
+                "description": "Delete a temporary hold previously created.\n Note that you can also delete a hold when creating a new hold (ex. when the customer goes back in the booking process and selects a different time), or when creating a booking (i.e. when the customer checks out), without having to make a separate call to this endpoint.",
+                "operationId": "DeleteHolds",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/payments": {
+            "get": {
+                "summary": "Get a list of payments received",
+                "description": "Get a list of payments received.",
+                "operationId": "GetPayments",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "paymentMethod",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "paymentMethodOther",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "startTime",
+                        "in": "query",
+                        "description": "the start time to search from. Required unless pageNavigationToken is used."
+                    },
+                    {
+                        "name": "endTime",
+                        "in": "query",
+                        "description": "the end time to search to. Required unless pageNavigationToken is used. The maximum date range in a single call is 31 days."
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": ".\nmaximum: 300"
+                    },
+                    {
+                        "name": "pageNavigationToken",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/payments\/{id}": {
+            "get": {
+                "summary": "Retrieve a specific payment",
+                "description": "Retrieve a specific payment.",
+                "operationId": "GetPayments",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/resourceblocks": {
+            "get": {
+                "summary": "Retrieve resource blocks",
+                "description": "Retrieve existing resource blocks\n The result is limited by the permissions of the apiKey.\n <p\/>\n It is possible to filter by time blocked and\/or time of the last change.\n To filter by time blocked, the parameters startTime and endTime are required.\n To filter by last time changed, the parameters lastUpdatedStartTime and lastUpdatedEndTime are required.\n It is possible to filter by both at the same time. At least one of the two filters must be used.\n <p\/>\n It is further possible to filter by res",
+                "operationId": "GetResourceblocks",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "startTime",
+                        "in": "query",
+                        "description": "the start time to search from. Required unless pageNavigationToken is used."
+                    },
+                    {
+                        "name": "endTime",
+                        "in": "query",
+                        "description": "the end time to search to. Required unless pageNavigationToken is used. The maximum date range in a single call is 31 days."
+                    },
+                    {
+                        "name": "lastUpdatedStartTime",
+                        "in": "query",
+                        "description": "if specified, only include bookings that were last changed (or created) on or after this time. If specified, lastUpdatedEndTime must be specified as well."
+                    },
+                    {
+                        "name": "lastUpdatedEndTime",
+                        "in": "query",
+                        "description": "if specified, only include bookings that were last changed (or created) on or before this time. If specified, lastUpdatedStartTime  must be specified as well.  The maximum allowed interval is 31 days."
+                    },
+                    {
+                        "name": "resourceId",
+                        "in": "query",
+                        "description": "if specified, only include blocks that affect this resource"
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": ".\nmaximum: 300"
+                    },
+                    {
+                        "name": "pageNavigationToken",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": ""
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create a new resource block",
+                "description": "\"blocks\" time for one or more resources, so that they're not available for booking.\n A resource block must be for at least one resource, but it can block more than one.\n When setting the resources in the block, only the id is required.",
+                "operationId": "PostResourceblocks",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "block",
+                        "in": "body",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/resourceblocks\/{id}": {
+            "get": {
+                "summary": "Retrieve a block",
+                "description": "Retrieve a block by its id",
+                "operationId": "GetResourceblocks",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update an existing block",
+                "description": "A resource block must be for at least one resource, but it can block more than one.\n When setting the resources in the block, only the id is required.",
+                "operationId": "PutResourceblocks",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "block",
+                        "in": "body",
+                        "description": ""
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a block",
+                "description": "Delete a block.",
+                "operationId": "DeleteResourceblocks",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/seatblocks": {
+            "get": {
+                "summary": "Retrieve seat blocks",
+                "description": "Retrieve existing seat blocks\n The result is limited by the permissions of the apiKey.\n <p\/>\n It is possible to filter by time blocked and\/or time of the last change.\n To filter by time blocked, the parameters startTime and endTime are required.\n To filter by last time changed, the parameters lastUpdatedStartTime and lastUpdatedEndTime are required.\n It is possible to filter by both at the same time. At least one of the two filters must be used.\n <p\/>\n It is further possible to filter by product",
+                "operationId": "GetSeatblocks",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "startTime",
+                        "in": "query",
+                        "description": "the start time to search from. Required unless pageNavigationToken is used."
+                    },
+                    {
+                        "name": "endTime",
+                        "in": "query",
+                        "description": "the end time to search to. Required unless pageNavigationToken is used. The maximum date range in a single call is 31 days."
+                    },
+                    {
+                        "name": "lastUpdatedStartTime",
+                        "in": "query",
+                        "description": "if specified, only include bookings that were last changed (or created) on or after this time. If specified, lastUpdatedEndTime must be specified as well."
+                    },
+                    {
+                        "name": "lastUpdatedEndTime",
+                        "in": "query",
+                        "description": "if specified, only include bookings that were last changed (or created) on or before this time. If specified, lastUpdatedStartTime  must be specified as well.  The maximum allowed interval is 31 days."
+                    },
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "the product id (see \/settings\/products). If not provided, all products of type \"fixed\" or \"fixedCourse\" will be included in the result. If no productId is provided, products that are not bookable by customers wil not be included in the result. If productId is provided, the product must be of type \"fixed\" or \"fixedCourse\". For products of type \"flexibleTime\", use \/availability\/matchingslots instead."
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": ".\nmaximum: 300"
+                    },
+                    {
+                        "name": "pageNavigationToken",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": ""
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create a new seat block",
+                "description": "\"blocks\" a given number of seats, so that they're not available for booking.",
+                "operationId": "PostSeatblocks",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "block",
+                        "in": "body",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/seatblocks\/{id}": {
+            "get": {
+                "summary": "Retrieve a block",
+                "description": "Retrieve a block by its id",
+                "operationId": "GetSeatblocks",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update an existing block",
+                "description": "Updates an existing seat block",
+                "operationId": "PutSeatblocks",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "block",
+                        "in": "body",
+                        "description": ""
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a block",
+                "description": "Delete a block.",
+                "operationId": "DeleteSeatblocks",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/settings\/apikeyinfo": {
+            "get": {
+                "summary": "Get information about your own API Key",
+                "description": "Get information about your own api key.",
+                "operationId": "GetSettingsApikeyinfo",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/settings\/business": {
+            "get": {
+                "summary": "Get information, location and contact details about the business",
+                "description": "Get information, location and contact details about the business.",
+                "operationId": "GetSettingsBusiness",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/settings\/languages": {
+            "get": {
+                "summary": "Retrieve all supported languages",
+                "description": "Retrieve all supported languages.",
+                "operationId": "GetSettingsLanguages",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/settings\/peoplecategories": {
+            "get": {
+                "summary": "Retrieve all supported people categories",
+                "description": "Retrieve the people categories supported by this account.\n This can include the default ones (\"Adults\",\"Children\",\"Infants\") and also custom ones defined by the account (\"Students\", ...)",
+                "operationId": "GetSettingsPeoplecategories",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/settings\/products": {
+            "get": {
+                "summary": "Get information about the products offered",
+                "description": "Get information about all the products (things that can be booked) offered.\n 3 types of product are available:\n - fixed are products with a fixed schedule and a given number of seats. Ex a group tour, a class, a workshop\n - fixedCourse are fixed products that are defined as a course, i.e. comprise of a series of dates\n - flexibleTime are products that describe private appointments, i.e. when one booking uses one resource (teacher, consultant, etc)\n\n Although Bookeo applies a minimum amount of ca",
+                "operationId": "GetSettingsProducts",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "if not specified, get all products"
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": ".\nmaximum: 300"
+                    },
+                    {
+                        "name": "pageNavigationToken",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/settings\/resources": {
+            "get": {
+                "summary": "Retrieve all available resources",
+                "description": "Retrieve all available resources.",
+                "operationId": "GetSettingsResources",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": ".\nmaximum: 300"
+                    },
+                    {
+                        "name": "pageNavigationToken",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/settings\/taxes": {
+            "get": {
+                "summary": "Retrieve all taxes used by this business",
+                "description": "Retrieve all taxes used by this business.",
+                "operationId": "GetSettingsTaxes",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/subaccounts": {
+            "get": {
+                "summary": "List all subaccounts in the portal",
+                "description": "Retrieve all the webhooks for this api key",
+                "operationId": "GetSubaccounts",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": ".\nmaximum: 300"
+                    },
+                    {
+                        "name": "pageNavigationToken",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/subaccounts\/{subaccountId}\/apikeys": {
+            "post": {
+                "summary": "Create a new API Key for this application to access a subaccount",
+                "description": "Install this application in a subaccount.\n Note that the API key used in this call must be that of the portal manager account. The application installed in the subaccount will be the same as this one, with the same permissions.\n If this application was already installed in the subaccount, its API key will be replaced by the one created in this call.",
+                "operationId": "PostSubaccountsSubaccountApikeys",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "subaccountId",
+                        "in": "path",
+                        "description": "the id of the subaccount where to install this application"
+                    }
+                ]
+            }
+        },
+        "\/subaccounts\/{subaccountId}\/apikeys\/{apiKey}": {
+            "delete": {
+                "summary": "Delete the API Key for this application from a subaccount",
+                "description": "Delete the api key for this application from a subaccount.",
+                "operationId": "DeleteSubaccountsSubaccountApikeysApikey",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "subaccountId",
+                        "in": "path",
+                        "description": "the id of the subaccount where to install this application"
+                    },
+                    {
+                        "name": "apiKey",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/webhooks": {
+            "get": {
+                "summary": "List all webhooks",
+                "description": "Retrieve all the webhooks for this api key",
+                "operationId": "GetWebhooks",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "post": {
+                "summary": "Create a new webhook",
+                "description": "Note that if an existing webhook for the same domain and type was already set for this api key, it will be automatically replaced by this new webhook.\n In other words, there can be only one webhook for each combination of domain and type, for an API key.\n So to upgrade an existing webhook URL, simply create a new one with the same domain and type, but a different URL.\n\n For webhook with domain \"bookings\" and type \"deleted\", the notification will be sent whether the booking is canceled or complet",
+                "operationId": "PostWebhooks",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "webhook",
+                        "in": "body",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/webhooks\/{webhookId}": {
+            "get": {
+                "summary": "Retrieve a webhook",
+                "description": "Retrieve a webhook.",
+                "operationId": "GetWebhooksWebhook",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "webhookId",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a webhook",
+                "description": "Delete a webhook.",
+                "operationId": "DeleteWebhooksWebhook",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "webhookId",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "WebhooksList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "MatchingSlotsSearchParameters": {
+                "type": "object",
+                "properties": {
+                    "productId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "startTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "endTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "peopleNumbers": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "options": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "resources": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "LanguagesList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Tax": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "ResourceTypesList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "CourseSchedule": {
+                "type": "object",
+                "properties": {
+                    "events": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "title": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "TelephoneNumber": {
+                "type": "object"
+            },
+            "ResourceType": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "isPublic": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "resources": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "MatchingSlot": {
+                "type": "object",
+                "properties": {
+                    "startTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "endTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "eventId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "resources": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "TaxesList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "SeatBlocksList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "ChoiceOptionValue": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Duration": {
+                "type": "object",
+                "properties": {
+                    "days": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "hours": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "minutes": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Participant": {
+                "type": "object",
+                "properties": {
+                    "personId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "peopleCategoryId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "categoryIndex": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Language": {
+                "type": "object",
+                "properties": {
+                    "tag": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "BookingOption": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "value": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "SeatBlock": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "eventId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "productId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "reason": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "numSeats": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "startTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "creationTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "creationAgent": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "lastChangeTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "lastChangeAgent": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Slot": {
+                "type": "object",
+                "properties": {
+                    "productId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "eventId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "startTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "endTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "numSeatsAvailable": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "resources": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "privateEvent": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "ProductList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "CourseEvent": {
+                "type": "object",
+                "properties": {
+                    "eventNumber": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "startTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "endTime": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "PriceTax": {
+                "type": "object",
+                "properties": {
+                    "taxId": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Payment": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "creationTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "receivedTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "reason": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "comment": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "paymentMethod": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "paymentMethodOther": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "agent": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "customerId": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "ResourceBlock": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "startTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "endTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "reason": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "resources": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "creationTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "creationAgent": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "lastChangeTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "lastChangeAgent": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "PeopleCategoryList": {
+                "type": "object",
+                "properties": {
+                    "categories": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "PaymentMethod": {
+                "type": "object"
+            },
+            "PaginationInfo": {
+                "type": "object",
+                "properties": {
+                    "totalItems": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "totalPages": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "currentPage": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "pageNavigationToken": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "PortalSubaccount": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "PriceRate": {
+                "type": "object",
+                "properties": {
+                    "peopleCategoryId": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "PeopleCategory": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "numSeats": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "NumberOption": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "shownToCustomers": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "enabled": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "minValue": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "maxValue": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "defaultValue": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "TextOption": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "shownToCustomers": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "enabled": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "required": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "PortalSubaccountsList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Money": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "currency": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "MatchingSlotList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "BookingLimit": {
+                "type": "object",
+                "properties": {
+                    "peopleCategoryId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "min": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "max": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Business": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "legalIdentifiers": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "phoneNumbers": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "websiteURL": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "emailAddress": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Booking": {
+                "type": "object",
+                "properties": {
+                    "bookingNumber": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "eventId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "firstCourseEnrolledEventId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "startTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "endTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "customerId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "title": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "externalRef": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "resources": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "canceled": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "cancelationTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "cancelationAgent": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "accepted": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "sourceIp": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "creationTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "creationAgent": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "lastChangeTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "lastChangeAgent": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "productName": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "productId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "options": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "privateEvent": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "promotionCodeInput": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "promotionName": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "couponCodes": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "giftVoucherCodeInput": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "specificVoucherCode": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "initialPayments": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "StreetAddress": {
+                "type": "object",
+                "properties": {
+                    "address1": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "address2": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "city": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "countryCode": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "state": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "postcode": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "BookingsList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "ResourceBlocksList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Hold": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "expiration": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "applicablePrepaidCredits": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "ApiKeyInfo": {
+                "type": "object",
+                "properties": {
+                    "accountId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "permissions": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "creationTime": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "CustomField": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "value": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "LinkedPersonList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Image": {
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Participants": {
+                "type": "object",
+                "properties": {
+                    "numbers": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "details": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "SlotList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Customer": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "firstName": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "middleName": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "lastName": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "emailAddress": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "phoneNumbers": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "creationTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "startTimeOfNextBooking": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "startTimeOfPreviousBooking": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "dateOfBirth": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "customFields": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "gender": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "facebookId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "languageCode": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "acceptSmsReminders": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "numBookings": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "numCancelations": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "numNoShows": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "member": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "membershipEnd": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "CustomersList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "PhoneNumber": {
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "type": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "OnOffOption": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "shownToCustomers": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "enabled": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "defaultState": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Webhook": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "url": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "domain": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "type": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "blockedTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "blockedReason": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "ChoiceOption": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "shownToCustomers": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "enabled": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "defaultValueId": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "PaymentsList": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "PeopleNumber": {
+                "type": "object",
+                "properties": {
+                    "peopleCategoryId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "number": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Resource": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Product": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "images": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "productId": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "productCode": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "bookingLimits": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "defaultRates": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "type": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "membersOnly": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "prepaidOnly": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "acceptDeny": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "apiBookingsAllowed": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "allowPrivateEvents": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "choiceOptions": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "numberOptions": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "onOffOptions": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "textOptions": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "LinkedPerson": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "firstName": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "middleName": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "lastName": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "emailAddress": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "phoneNumbers": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "creationTime": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "startTimeOfNextBooking": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "startTimeOfPreviousBooking": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "dateOfBirth": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "customFields": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "gender": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "customerId": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "Price": {
+                "type": "object",
+                "properties": {
+                    "taxes": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            }
+        }
+    }
+}
