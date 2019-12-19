@@ -1,0 +1,2197 @@
+{
+    "id": "6111b138fbfe948f2c90d56226898f16",
+    "name": "Bookeo",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "6d64985327d0c0cc7d10247d095c20eb",
+            "name": "Find available slots matching given search parameters",
+            "url": "httpsapi.bookeo.com\/v2\/availability\/matchingslots",
+            "description": "Create a search for available slots that match the given search parameters.\n Note that there are two different searches possible, \/availability\/slots and \/availability\/matchingslots (this endpoint).\n The former simply shows the number of available seats for each available slot. The latter (this one) takes as input the participant numbers, and shows the slots that are available for those numbers, and an estimate of the price.\n Parameters include product code, number of people and options.\n The su",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "search",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "itemsPerPage",
+                    "description": ".\nmaximum: 300",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "c27111c9f57f7d7ac26dc4832f7c0f3a",
+            "name": "Navigate results of a matching slots search",
+            "url": "httpsapi.bookeo.com\/v2\/availability\/matchingslots\/{pageNavigationToken}",
+            "description": "Navigate results of a matching slots search.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "pageNavigationToken",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "1dcff376752c79800da3f83dbb712ded",
+            "name": "Get information about the availability of products",
+            "url": "httpsapi.bookeo.com\/v2\/availability\/slots",
+            "description": "Performs a basic search to find available slots and number of seats in each.\n Note that there are two different searches possible, \/availability\/slots (this endpoint) and \/availability\/matchingslots .\n The former simply shows the number of available seats for each available slot. The latter takes as input the participant numbers, and shows the slots that are available for those numbers, and an estimate of the price.\n \/availability\/slots cannot be used for products of type flexibleTime . For thos",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "productId",
+                    "description": "the product id (see \/settings\/products). If not provided, all products of type \"fixed\" or \"fixedCourse\" will be included in the result. If no productId is provided, products that are not bookable by customers wil not be included in the result. If productId is provided, the product must be of type \"fixed\" or \"fixedCourse\". For products of type \"flexibleTime\", use \/availability\/matchingslots instead.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "startTime",
+                    "description": "the start time to search from. Required unless pageNavigationToken is used.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "endTime",
+                    "description": "the end time to search to. Required unless pageNavigationToken is used. The maximum date range in a single call is 31 days.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "itemsPerPage",
+                    "description": ".\nmaximum: 300",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNavigationToken",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "52ecb0766ef29b81f8737f797ed5af30",
+            "name": "Retrieve bookings",
+            "url": "httpsapi.bookeo.com\/v2\/bookings",
+            "description": "Retrieve existing bookings\n The result is limited by the permissions of the apiKey.\n <p\/>\n It is possible to filter by time booked and\/or time of the last change.\n To filter by time booked, the parameters startTime and endTime are required.\n To filter by last time changed, the parameters lastUpdatedStartTime and lastUpdatedEndTime are required.\n It is possible to filter by both at the same time. At least one of the two filters must be used.\n <p\/>\n It is further possible to filter by product id.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "startTime",
+                    "description": "the start time to search from. Required unless pageNavigationToken is used.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "endTime",
+                    "description": "the end time to search to. Required unless pageNavigationToken is used. The maximum date range in a single call is 31 days.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "lastUpdatedStartTime",
+                    "description": "if specified, only include bookings that were last changed (or created) on or after this time. If specified, lastUpdatedEndTime must be specified as well.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "lastUpdatedEndTime",
+                    "description": "if specified, only include bookings that were last changed (or created) on or before this time. If specified, lastUpdatedStartTime  must be specified as well.  The maximum allowed interval is 31 days.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "productId",
+                    "description": "the product id (see \/settings\/products). If not provided, all products of type \"fixed\" or \"fixedCourse\" will be included in the result. If no productId is provided, products that are not bookable by customers wil not be included in the result. If productId is provided, the product must be of type \"fixed\" or \"fixedCourse\". For products of type \"flexibleTime\", use \/availability\/matchingslots instead.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "includeCanceled",
+                    "description": "if true, canceled bookings are included. If false, only bookings that are not canceled are included",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "expandCustomer",
+                    "description": "if true, the full details of the customer are included (provided the application has read permission over the customer)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "expandParticipants",
+                    "description": "if true, full details of the participants are included (provided the application has read permission over the participant)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "itemsPerPage",
+                    "description": ".\nmaximum: 300",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNavigationToken",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "554b3d887ace569d93a107e82820eff4",
+            "name": "Create a new booking",
+            "url": "httpsapi.bookeo.com\/v2\/bookings",
+            "description": "When creating a booking for a product of type \"fixed\" or \"fixedCourse\", the eventId is required. eventIds are obtained by calling \/availability\/slots or \/availability\/matchingSlots .\n When creating a booking for a product of type \"flexibleTime\", you can either specify the eventId or the startTime (in which case you can optionally specify the endTime. If no endTime is specified, Bookeo will automatically calculate the duration based on the options chosen)",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "booking",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "previousHoldId",
+                    "description": "if specified, deletes the hold with the given id",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "notifyUsers",
+                    "description": "whether to send a notification email (and possibly SMS, depending on settings) to eligible users",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "notifyCustomer",
+                    "description": "whether to send a confirmation email to the customer",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "sendCustomerReminders",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "sendCustomerThankyou",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "mode",
+                    "description": "if present and set to \"backend\", treats the operation as if it was done by a manager. This relaxes some constraints such as when is it possible to change a booking, participants limits for the booking, booking limits (time in advance), and so on.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "f0b231ceda01c071758a437c94f2411a",
+            "name": "Retrieve a booking",
+            "url": "httpsapi.bookeo.com\/v2\/bookings\/{bookingNumber}",
+            "description": "Retrieve a booking by its booking number",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "bookingNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "expandCustomer",
+                    "description": "if true, the full details of the customer are included (provided the application has read permission over the customer)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "expandParticipants",
+                    "description": "if true, full details of the participants are included (provided the application has read permission over the participant)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "f1b8ee61d91d5c757a2c54f50d8b8e88",
+            "name": "Update an existing booking",
+            "url": "httpsapi.bookeo.com\/v2\/bookings\/{bookingNumber}",
+            "description": "Update an existing booking.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "booking",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "bookingNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "notifyUsers",
+                    "description": "whether to send a notification email (and possibly SMS, depending on settings) to eligible users",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "notifyCustomer",
+                    "description": "whether to send a confirmation email to the customer",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "mode",
+                    "description": "if present and set to \"backend\", treats the operation as if it was done by a manager. This relaxes some constraints such as when is it possible to change a booking, participants limits for the booking, booking limits (time in advance), and so on.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "a6402dfab5bee38ff17f93e3dc41f4e5",
+            "name": "Cancel a booking",
+            "url": "httpsapi.bookeo.com\/v2\/bookings\/{bookingNumber}",
+            "description": "Cancel a booking. Cancelled bookings remain in the system, but no longer show up in the calendar or take up seats.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "bookingNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "notifyUsers",
+                    "description": "whether to send a notification email (and possibly SMS, depending on settings) to eligible users",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "notifyCustomer",
+                    "description": "whether to send a confirmation email to the customer",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "applyCancellationPolicy",
+                    "description": "if true, the default cancellation policy is applied. This may cause a charge on the credit card on file, if a cancellation fee is due",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "trackInCustomerHistory",
+                    "description": "if true, the cancellation will be tracked in the customer's stats",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "cancelRemainingSeries",
+                    "description": "if true, and this booking is part of a recurring series, all following bookings will be cancelled as well",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "reason",
+                    "description": "an optional reason that explains why the booking was cancelled",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "d8da57d0f0581db6f5398499b31f059a",
+            "name": "Retrieve the customer associated with a booking",
+            "url": "httpsapi.bookeo.com\/v2\/bookings\/{bookingNumber}\/customer",
+            "description": "Retrieve the customer associated with a booking.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "bookingNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "b1cf1e7334335fc90ec4fcd2ce34ab0e",
+            "name": "Get the payments received for a booking",
+            "url": "httpsapi.bookeo.com\/v2\/bookings\/{bookingNumber}\/payments",
+            "description": "Get a list of all payments received for a booking. Only payments for which the apiKey has at least read permission will be included",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "bookingNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "itemsPerPage",
+                    "description": ".\nmaximum: 300",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNavigationToken",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "d34c8c835b42642c3434da4ffe299f60",
+            "name": "Add a payment to a booking",
+            "url": "httpsapi.bookeo.com\/v2\/bookings\/{bookingNumber}\/payments",
+            "description": "Create a payment record associated with a booking",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiPayment",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "bookingNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "1cb4ff06c6d9542f17c537adb15e9743",
+            "name": "Retrieve customers",
+            "url": "httpsapi.bookeo.com\/v2\/customers",
+            "description": "Get a list of customers.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "currentMembers",
+                    "description": "if true, include customers that are current members. this is the default",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "currentNonMembers",
+                    "description": "if true, include customers that are not current members. this is the default",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "createdSince",
+                    "description": "if present, only include customers created since the given time",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "searchField",
+                    "description": "a field on which to apply the search filter. Used only if searchText is specified",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "searchText",
+                    "description": "the text to search for. If not present, all customers are returned",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "itemsPerPage",
+                    "description": ".\nmaximum: 300",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNavigationToken",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "d29bedea2cac158b3fd54e1fba0a5910",
+            "name": "Create a new customer.",
+            "url": "httpsapi.bookeo.com\/v2\/customers",
+            "description": "Create a new customer.\n Please note there is a limit to the number of customers that can be imported in Bookeo. Bookeo is primarily a booking system, not a CRM.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "customer",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "86252506ad133d781a890100f165b99d",
+            "name": "Retrieve a person linked to a customer",
+            "url": "httpsapi.bookeo.com\/v2\/customers\/{customerid}\/linkedpeople\/{id}",
+            "description": "Retrieve a person linked to a customer.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "customerid",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "a131f7672418000c0adc703512052fad",
+            "name": "Update the details of a person linked to a customer",
+            "url": "httpsapi.bookeo.com\/v2\/customers\/{customerid}\/linkedpeople\/{id}",
+            "description": "Update the details of a person linked to a customer.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiLinkedPerson",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "customerid",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "145dff414508b12c139ea583fd87db3c",
+            "name": "Delete a person linked to a customer",
+            "url": "httpsapi.bookeo.com\/v2\/customers\/{customerid}\/linkedpeople\/{id}",
+            "description": "Delete a person linked to a customer.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "customerid",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "a0ace85577203071c909fb771c4dc9fd",
+            "name": "Retrieve a customer",
+            "url": "httpsapi.bookeo.com\/v2\/customers\/{id}",
+            "description": "Retrieve a customer by its id",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "88e9834985864c7ea9924b277d9ab688",
+            "name": "Update an existing customer",
+            "url": "httpsapi.bookeo.com\/v2\/customers\/{id}",
+            "description": "Update an existing customer.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "customer",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "e741f93cf9acd6d942a91379cd677d68",
+            "name": "Delete a customer",
+            "url": "httpsapi.bookeo.com\/v2\/customers\/{id}",
+            "description": "Delete a customer.\n Please note it is not possible to delete customers that have bookings in the future, and that are not cancelled.\n If your application needs to delete a customer with future bookings, make sure to cancel all future bookings for that customer first.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "b740161731f6b21598e0a1a5b62b529e",
+            "name": "Check a customer's password",
+            "url": "httpsapi.bookeo.com\/v2\/customers\/{id}\/authenticate",
+            "description": "The customer's email address is the \"username\" used by Bookeo to authenticate customers.\n So to authenticate a customer your application would typically use GET \/customers to search for customers with a given email address, and then GET \/customers\/{id}\/authenticate to authenticate.\n Remember that there may be duplicate customer records with the same email address, ex. due to duplicate importing or manual record creation.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "password",
+                    "description": "remember to use URL encoding",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "0370d435a9cb78ae493bf3d7251c6c35",
+            "name": "Retrieve a customer's bookings",
+            "url": "httpsapi.bookeo.com\/v2\/customers\/{id}\/bookings",
+            "description": "Retrieve a customer's bookings.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "beginDate",
+                    "description": "if specified, only bookings on or after this date will be included",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "endDate",
+                    "description": "if specified, only bookings on or before this date will be included",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "expandParticipants",
+                    "description": "if true, full details of the participants are included (provided the application has read permission over the participant)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "itemsPerPage",
+                    "description": ".\nmaximum: 300",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNavigationToken",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "0f2c5cd5133be194440cf0f56424f300",
+            "name": "Get the people linked to a customer",
+            "url": "httpsapi.bookeo.com\/v2\/customers\/{id}\/linkedpeople",
+            "description": "Get the people linked to a customer.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "itemsPerPage",
+                    "description": ".\nmaximum: 300",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNavigationToken",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "d08151c92452cd7c66e7885fac642173",
+            "name": "Create a temporary hold to finalize the booking",
+            "url": "httpsapi.bookeo.com\/v2\/holds",
+            "description": "Performs a final check of the booking, and reserves required resources\/seats to allow finalization of the booking process (ex. process payment).\n The returned object also contains the updated price calculations.\n Normally your application should have no more than one hold in place during a customer booking process.\n Make sure to not leave many holds around. In any case, holds are deleted automatically after a fixed time from creation.\n Note that when creating a hold, the customer field of the bo",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "booking",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "holdDurationSeconds",
+                    "description": "the required seats\/resources will be reserved for the specified time, ensuring that they cannot be taken by other bookings during this time. The hold cannot be for more than 10 minutes.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "previousHoldId",
+                    "description": "if specified, deletes the hold with the given id",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "dbc0388eb81ef297b6752171458c3d03",
+            "name": "Retrieve a hold previously generated",
+            "url": "httpsapi.bookeo.com\/v2\/holds\/{id}",
+            "description": "Retrieve a hold previously generated.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "4137997070479074b469c4ad7b873c1b",
+            "name": "Delete a temporary hold",
+            "url": "httpsapi.bookeo.com\/v2\/holds\/{id}",
+            "description": "Delete a temporary hold previously created.\n Note that you can also delete a hold when creating a new hold (ex. when the customer goes back in the booking process and selects a different time), or when creating a booking (i.e. when the customer checks out), without having to make a separate call to this endpoint.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "7fd974bec98cad35beeb9a6729797914",
+            "name": "Get a list of payments received",
+            "url": "httpsapi.bookeo.com\/v2\/payments",
+            "description": "Get a list of payments received.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "paymentMethod",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "paymentMethodOther",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "startTime",
+                    "description": "the start time to search from. Required unless pageNavigationToken is used.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "endTime",
+                    "description": "the end time to search to. Required unless pageNavigationToken is used. The maximum date range in a single call is 31 days.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "itemsPerPage",
+                    "description": ".\nmaximum: 300",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNavigationToken",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "f1e153fb2f2f01a6a3f1b4e60ad67360",
+            "name": "Retrieve a specific payment",
+            "url": "httpsapi.bookeo.com\/v2\/payments\/{id}",
+            "description": "Retrieve a specific payment.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "4f6a27e1097023ad020617cfdc05c556",
+            "name": "Retrieve resource blocks",
+            "url": "httpsapi.bookeo.com\/v2\/resourceblocks",
+            "description": "Retrieve existing resource blocks\n The result is limited by the permissions of the apiKey.\n <p\/>\n It is possible to filter by time blocked and\/or time of the last change.\n To filter by time blocked, the parameters startTime and endTime are required.\n To filter by last time changed, the parameters lastUpdatedStartTime and lastUpdatedEndTime are required.\n It is possible to filter by both at the same time. At least one of the two filters must be used.\n <p\/>\n It is further possible to filter by res",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "startTime",
+                    "description": "the start time to search from. Required unless pageNavigationToken is used.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "endTime",
+                    "description": "the end time to search to. Required unless pageNavigationToken is used. The maximum date range in a single call is 31 days.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "lastUpdatedStartTime",
+                    "description": "if specified, only include bookings that were last changed (or created) on or after this time. If specified, lastUpdatedEndTime must be specified as well.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "lastUpdatedEndTime",
+                    "description": "if specified, only include bookings that were last changed (or created) on or before this time. If specified, lastUpdatedStartTime  must be specified as well.  The maximum allowed interval is 31 days.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "resourceId",
+                    "description": "if specified, only include blocks that affect this resource",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "itemsPerPage",
+                    "description": ".\nmaximum: 300",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNavigationToken",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "8822d1c31804d819495ae400f431d580",
+            "name": "Create a new resource block",
+            "url": "httpsapi.bookeo.com\/v2\/resourceblocks",
+            "description": "\"blocks\" time for one or more resources, so that they're not available for booking.\n A resource block must be for at least one resource, but it can block more than one.\n When setting the resources in the block, only the id is required.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "block",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "3bf745d81857bd88682e3adfe05a4b77",
+            "name": "Retrieve a block",
+            "url": "httpsapi.bookeo.com\/v2\/resourceblocks\/{id}",
+            "description": "Retrieve a block by its id",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "20140e3ee0153f3fdeb133c58716f9a0",
+            "name": "Update an existing block",
+            "url": "httpsapi.bookeo.com\/v2\/resourceblocks\/{id}",
+            "description": "A resource block must be for at least one resource, but it can block more than one.\n When setting the resources in the block, only the id is required.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "block",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "baee2cb750a2e46432c6c7d607985067",
+            "name": "Delete a block",
+            "url": "httpsapi.bookeo.com\/v2\/resourceblocks\/{id}",
+            "description": "Delete a block.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "276813934c6be83e508af0c25925775c",
+            "name": "Retrieve seat blocks",
+            "url": "httpsapi.bookeo.com\/v2\/seatblocks",
+            "description": "Retrieve existing seat blocks\n The result is limited by the permissions of the apiKey.\n <p\/>\n It is possible to filter by time blocked and\/or time of the last change.\n To filter by time blocked, the parameters startTime and endTime are required.\n To filter by last time changed, the parameters lastUpdatedStartTime and lastUpdatedEndTime are required.\n It is possible to filter by both at the same time. At least one of the two filters must be used.\n <p\/>\n It is further possible to filter by product",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "startTime",
+                    "description": "the start time to search from. Required unless pageNavigationToken is used.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "endTime",
+                    "description": "the end time to search to. Required unless pageNavigationToken is used. The maximum date range in a single call is 31 days.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "lastUpdatedStartTime",
+                    "description": "if specified, only include bookings that were last changed (or created) on or after this time. If specified, lastUpdatedEndTime must be specified as well.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "lastUpdatedEndTime",
+                    "description": "if specified, only include bookings that were last changed (or created) on or before this time. If specified, lastUpdatedStartTime  must be specified as well.  The maximum allowed interval is 31 days.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "productId",
+                    "description": "the product id (see \/settings\/products). If not provided, all products of type \"fixed\" or \"fixedCourse\" will be included in the result. If no productId is provided, products that are not bookable by customers wil not be included in the result. If productId is provided, the product must be of type \"fixed\" or \"fixedCourse\". For products of type \"flexibleTime\", use \/availability\/matchingslots instead.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "itemsPerPage",
+                    "description": ".\nmaximum: 300",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNavigationToken",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "d6647362a57e3e2ed268c84c369759b2",
+            "name": "Create a new seat block",
+            "url": "httpsapi.bookeo.com\/v2\/seatblocks",
+            "description": "\"blocks\" a given number of seats, so that they're not available for booking.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "block",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "ebe6abf69ebc7b9089ef6935cbc6e6ac",
+            "name": "Retrieve a block",
+            "url": "httpsapi.bookeo.com\/v2\/seatblocks\/{id}",
+            "description": "Retrieve a block by its id",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "1ddf0ea3e1e44a591f4e0b5119f9352b",
+            "name": "Update an existing block",
+            "url": "httpsapi.bookeo.com\/v2\/seatblocks\/{id}",
+            "description": "Updates an existing seat block",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "block",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "0696148146c4179a84625a4f79c63cae",
+            "name": "Delete a block",
+            "url": "httpsapi.bookeo.com\/v2\/seatblocks\/{id}",
+            "description": "Delete a block.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "c2ca07bae933ccbb13106a144c7d3c27",
+            "name": "Get information about your own API Key",
+            "url": "httpsapi.bookeo.com\/v2\/settings\/apikeyinfo",
+            "description": "Get information about your own api key.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "9eb8498db627cc289345a023970d5565",
+            "name": "Get information, location and contact details about the business",
+            "url": "httpsapi.bookeo.com\/v2\/settings\/business",
+            "description": "Get information, location and contact details about the business.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "c71c8bd7e9c1fe4e54422658d9ddc1ed",
+            "name": "Retrieve all supported languages",
+            "url": "httpsapi.bookeo.com\/v2\/settings\/languages",
+            "description": "Retrieve all supported languages.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "13a56fc041dd355f677b59dc4ebecf7d",
+            "name": "Retrieve all supported people categories",
+            "url": "httpsapi.bookeo.com\/v2\/settings\/peoplecategories",
+            "description": "Retrieve the people categories supported by this account.\n This can include the default ones (\"Adults\",\"Children\",\"Infants\") and also custom ones defined by the account (\"Students\", ...)",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "e847198207da25785df44837d7e88a6e",
+            "name": "Get information about the products offered",
+            "url": "httpsapi.bookeo.com\/v2\/settings\/products",
+            "description": "Get information about all the products (things that can be booked) offered.\n 3 types of product are available:\n - fixed are products with a fixed schedule and a given number of seats. Ex a group tour, a class, a workshop\n - fixedCourse are fixed products that are defined as a course, i.e. comprise of a series of dates\n - flexibleTime are products that describe private appointments, i.e. when one booking uses one resource (teacher, consultant, etc)\n\n Although Bookeo applies a minimum amount of ca",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "type",
+                    "description": "if not specified, get all products",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "itemsPerPage",
+                    "description": ".\nmaximum: 300",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNavigationToken",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "c58cb99e794bf59f1a81be38fa3d3f36",
+            "name": "Retrieve all available resources",
+            "url": "httpsapi.bookeo.com\/v2\/settings\/resources",
+            "description": "Retrieve all available resources.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "itemsPerPage",
+                    "description": ".\nmaximum: 300",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNavigationToken",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "5fcbf67bb9e8e4eac554f93143676f04",
+            "name": "Retrieve all taxes used by this business",
+            "url": "httpsapi.bookeo.com\/v2\/settings\/taxes",
+            "description": "Retrieve all taxes used by this business.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "eadc886afffb080ff2d28b11365240db",
+            "name": "List all subaccounts in the portal",
+            "url": "httpsapi.bookeo.com\/v2\/subaccounts",
+            "description": "Retrieve all the webhooks for this api key",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "itemsPerPage",
+                    "description": ".\nmaximum: 300",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNavigationToken",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNumber",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "a1fd74253a1d1d64d2eb60ef6a394f45",
+            "name": "Create a new API Key for this application to access a subaccount",
+            "url": "httpsapi.bookeo.com\/v2\/subaccounts\/{subaccountId}\/apikeys",
+            "description": "Install this application in a subaccount.\n Note that the API key used in this call must be that of the portal manager account. The application installed in the subaccount will be the same as this one, with the same permissions.\n If this application was already installed in the subaccount, its API key will be replaced by the one created in this call.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "subaccountId",
+                    "description": "the id of the subaccount where to install this application",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "dfeeee8b2f32c3cc2ac8a1e845327db0",
+            "name": "Delete the API Key for this application from a subaccount",
+            "url": "httpsapi.bookeo.com\/v2\/subaccounts\/{subaccountId}\/apikeys\/{apiKey}",
+            "description": "Delete the api key for this application from a subaccount.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "subaccountId",
+                    "description": "the id of the subaccount where to install this application",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "apiKey",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "c131b6c5e9317679e1b8d4ac31e4c79a",
+            "name": "List all webhooks",
+            "url": "httpsapi.bookeo.com\/v2\/webhooks",
+            "description": "Retrieve all the webhooks for this api key",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "22cbe5b8ad9639885c1c2a1bda6e4f30",
+            "name": "Create a new webhook",
+            "url": "httpsapi.bookeo.com\/v2\/webhooks",
+            "description": "Note that if an existing webhook for the same domain and type was already set for this api key, it will be automatically replaced by this new webhook.\n In other words, there can be only one webhook for each combination of domain and type, for an API key.\n So to upgrade an existing webhook URL, simply create a new one with the same domain and type, but a different URL.\n\n For webhook with domain \"bookings\" and type \"deleted\", the notification will be sent whether the booking is canceled or complet",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "webhook",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "a340f70b4428707677ede63d96782d92",
+            "name": "Retrieve a webhook",
+            "url": "httpsapi.bookeo.com\/v2\/webhooks\/{webhookId}",
+            "description": "Retrieve a webhook.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "webhookId",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        },
+        {
+            "id": "f797020e169c79323494cf8e9abe449c",
+            "name": "Delete a webhook",
+            "url": "httpsapi.bookeo.com\/v2\/webhooks\/{webhookId}",
+            "description": "Delete a webhook.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "webhookId",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6111b138fbfe948f2c90d56226898f16",
+            "rawModeData": ""
+        }
+    ]
+}
